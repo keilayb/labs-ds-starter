@@ -11,7 +11,7 @@ router = APIRouter()
 
 async def get_db() -> sqlalchemy.engine.base.Connection:
     """Get a SQLAlchemy database connection.
-    
+
     Uses this environment variable if it exists:  
     DATABASE_URL=dialect://user:password@host/dbname
 
@@ -34,7 +34,7 @@ async def get_url(connection=Depends(get_db)):
 
     dialect://user:password@host/dbname
 
-    The password will be hidden with ***
+    The password will be hidden with *** 🤫
     """
     url_without_password = repr(connection.engine.url)
     return {'database_url': url_without_password}

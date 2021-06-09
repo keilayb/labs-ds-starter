@@ -8,12 +8,15 @@ awsebcli = "*"
 jupyter = "*"
 pytest = "*"
 pytest-pylint = "*"
+autopep8 = "*"
 
 [packages]
 fastapi = "*"
 sqlalchemy = "*"
 typing-extensions = "*"
 uvicorn = {extras = ["standard"], version = "*"}
+python-dotenv = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3"

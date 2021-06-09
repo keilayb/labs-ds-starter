@@ -2,10 +2,10 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
-from app import db, ml, viz
+from app import db, messages  # , ml, viz
 
 description = """
-Edit your app's title and description. See [https://fastapi.tiangolo.com/tutorial/metadata/](https://fastapi.tiangolo.com/tutorial/metadata/)
+Check out this app I built!
 
 To use these interactive docs:
 - Click on an endpoint below
@@ -13,17 +13,19 @@ To use these interactive docs:
 - Edit the Request body or any parameters
 - Click the **Execute** button
 - Scroll down to see the Server response Code & Details
+
 """
 
 app = FastAPI(
-    title='DS API',
+    title='Getting to Know FastAPI',
     description=description,
     docs_url='/',
 )
 
-app.include_router(db.router, tags=['Database'])
-app.include_router(ml.router, tags=['Machine Learning'])
-app.include_router(viz.router, tags=['Visualization'])
+app.include_router(db.router, tags=["Keila's Database Endpoints"])
+app.include_router(messages.router, tags=['Friendly Messages'])
+# app.include_router(ml.router, tags=['Machine Learning'])
+# app.include_router(viz.router, tags=['Visualization'])
 
 app.add_middleware(
     CORSMiddleware,
