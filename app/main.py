@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.openapi.utils import get_openapi
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
@@ -26,6 +27,25 @@ app.include_router(db.router, tags=["Keila's Database Endpoints"])
 app.include_router(messages.router, tags=['Friendly Messages'])
 # app.include_router(ml.router, tags=['Machine Learning'])
 # app.include_router(viz.router, tags=['Visualization'])
+
+
+def custom_openapi():
+    if app.openapi_schema:
+        return app.openapi_schema
+    openapi_schema = get_openapi(
+        title="Getting to Know FastAPI",
+        description=description,
+        version="0.1.0",
+        routes=app.routes,
+    )
+    openapi_schema["info"]["version"] = {
+        "version": "0.1.1"
+    }
+    app.openapi_schema = openapi_schema
+    return app.openapi_schema
+
+
+app.openapi = custom_openapi
 
 app.add_middleware(
     CORSMiddleware,
