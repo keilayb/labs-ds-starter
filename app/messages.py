@@ -20,8 +20,6 @@ async def personal_hello_path_params(your_name):
     return f"Hello {your_name}!"
 
 
-# This would be a good way to do it in labs project, so that
-# webdev teammates get a json back from DS API
 @router.get('/personal_hello_query_params')
 async def personal_hello_query_params(name='keila'):
     """Returns a friendly greeting with a person's name 👋
