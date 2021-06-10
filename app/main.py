@@ -15,6 +15,7 @@ To use these interactive docs:
 - Click the **Execute** button
 - Scroll down to see the Server response Code & Details
 
+
 """
 
 app = FastAPI(
