@@ -19,6 +19,7 @@ python-dotenv = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
 pandas = "*"
+importlib-metadata = "*"
 
 [requires]
 python_version = "3"
