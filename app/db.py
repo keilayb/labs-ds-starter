@@ -4,6 +4,7 @@ import os
 from dotenv import load_dotenv
 from fastapi import APIRouter, Depends
 import sqlalchemy
+import pandas as pd
 
 router = APIRouter()
 
@@ -37,3 +38,19 @@ async def get_url(connection=Depends(get_db)):
     """
     url_without_password = repr(connection.engine.url)
     return {'database_url': url_without_password}
+
+
+@router.get('/write_data')
+async def write_data(df, connection=Depends(get_db)):
+    tablename = 'mytable'
+    df = pd.util.testing.makeDataFrame()
+    df.to_sql(tablename, connection, if_exists='append',
+              index=False, method='multi')
+    return f"Data written to table named {tablename}"
+
+
+@router.get('/read_data')
+async def read_data(connection=Depends(get_db)):
+    query = """SELECT * FROM mytable LIMIT 5"""
+    df = pd.read_sql(query, connection)
+    return df.to_dict(orient='records')

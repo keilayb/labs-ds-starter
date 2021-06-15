@@ -18,6 +18,7 @@ uvicorn = {extras = ["standard"], version = "*"}
 python-dotenv = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
+pandas = "*"
 
 [requires]
 python_version = "3"

@@ -15,7 +15,6 @@ To use these interactive docs:
 - Click the **Execute** button
 - Scroll down to see the Server response Code & Details
 
-
 """
 
 app = FastAPI(
@@ -24,7 +23,7 @@ app = FastAPI(
     docs_url='/',
 )
 
-app.include_router(db.router, tags=["Keila's Database Endpoints"])
+app.include_router(db.router, tags=["Keila's Database Functions"])
 app.include_router(messages.router, tags=['Friendly Messages'])
 # app.include_router(ml.router, tags=['Machine Learning'])
 # app.include_router(viz.router, tags=['Visualization'])
@@ -40,7 +39,7 @@ def custom_openapi():
         routes=app.routes,
     )
     openapi_schema["info"]["version"] = {
-        "version": "0.1.1"
+        "version": "0.1.2"
     }
     app.openapi_schema = openapi_schema
     return app.openapi_schema
