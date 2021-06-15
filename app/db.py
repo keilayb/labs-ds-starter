@@ -41,7 +41,7 @@ async def get_url(connection=Depends(get_db)):
 
 
 @router.get('/write_data')
-async def write_data(df, connection=Depends(get_db)):
+async def write_data(connection=Depends(get_db)):
     tablename = 'mytable'
     df = pd.util.testing.makeDataFrame()
     df.to_sql(tablename, connection, if_exists='append',
